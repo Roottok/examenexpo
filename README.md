@@ -70,6 +70,6 @@ En cumplimiento con la rúbrica, se declara el uso de herramientas de **IA** com
 | Detalle | Enlace |
 | :--- | :--- |
 | **Repositorio GitHub** | https://github.com/Roottok/examenexpo |
-| **Video Demostrativo** | [Insertar Enlace Aquí] |
+| **Video Demostrativo** | https://drive.google.com/file/d/1NAXekl_oQ07VNT2PqlaY_W5i7WJNx7F0 |
 
 ---
