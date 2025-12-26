@@ -1,60 +1,75 @@
-# 📱 PROYECTO IPSS EVALUACION 1
+# 📱 PROYECTO SPRINGFIELD APP | EXAMEN FINAL
 
-## Descripción General del Proyecto
+## 📌 Descripción del Proyecto
+**Springfield App** es una solución móvil profesional para la gestión de tareas (Todo List), desarrollada con **React Native**, **Expo** y **TypeScript**. El proyecto integra una arquitectura robusta 100% conectada a un **Backend REST** , con autenticación JWT, persistencia de sesión y gestión de archivos multimedia en la nube.
 
-Esta aplicación móvil fue desarrollada utilizando **React Native** y **Expo** con **TypeScript**, enfocándose en implementar un flujo de autenticación completo y la gestión de navegación modular mediante **Expo Router**.
-
-El objetivo principal fue demostrar la comprensión de la gestión de estado a través de **React Hooks (`useState`, `useEffect`, `useContext`)** y la estructura de enrutamiento con Tabs, cumpliendo estrictamente con los requisitos funcionales y técnicos de la evaluación.
-
-***
+---
 
 ## ⚙️ Requisitos Técnicos Implementados
 
-### 1. Manejo de Estado (React Hooks)
+### 1. Gestión de Tareas (CRUD 100% Backend) 🌐
+Se ha eliminado toda persistencia local de tareas, cumpliendo con la restricción de que toda la data debe provenir exclusivamente del backend:
+* **Listado:** Obtención de tareas en tiempo real mediante `GET /todos`.
+* **Creación:** Registro de nuevas tareas (título, ubicación y foto) con `POST /todos`.
+* **Actualización:** Modificación de títulos y estados (pendiente/completado) mediante `PUT` y `PATCH`.
+* **Eliminación:** Borrado de registros y sus imágenes asociadas mediante `DELETE`.
 
-* **`useContext`:** Implementación de un `AuthContext` para gestionar el estado de sesión (`isAuthenticated` y `userEmail`) de forma global y centralizada.
-* **`useState`:** Uso demostrado en la pantalla de Login y en la pestaña **Explore** para manejar el estado local del contador (`count`) y el interruptor de efecto (`effectTrigger`).
-* **`useEffect`:** Uso demostrado en la pestaña **Explore** con dos efectos secundarios independientes:
-    1.  Monitoreo del contador (`count`), disparando una acción en consola y actualizando el título de la pestaña (visible en web).
-    2.  Monitoreo del estado del botón de efecto (`effectTrigger`), cambiando el color del botón y un texto descriptivo de la interfaz.
+### 2. Autenticación y Seguridad 🔐
+* **Token JWT:** Implementación de flujo de inicio de sesión con persistencia obligatoria del token en `AsyncStorage`.
+* **Protección de Rutas:** Gestión de navegación protegida; las rutas privadas solo son accesibles con un token válido.
+* **Interceptores de API:** Configuración de Axios para adjuntar automáticamente el token `Bearer` en las cabeceras de autorización.
 
-### 2. Flujo de Navegación (Expo Router)
+### 3. Integración de APIs Nativas e Imágenes 📸
+* **Captura:** Uso de la API nativa de cámara para la captura de fotos.
+* **Cloud Storage:** Subida de archivos binarios al servidor mediante el endpoint `POST /images` utilizando `multipart/form-data`.
+* **Geolocalización:** Captura de coordenadas GPS (latitud y longitud) al momento de crear cada tarea.
 
-* **Estructura de Rutas:** Se utiliza un grupo de autenticación principal en `app/_layout.tsx` para forzar la redirección al login (`/login`) si el usuario no está autenticado, evitando bucles de renderizado.
-* **Vistas con Tabs (`app/(tabs)/`):** La navegación principal se implementó con **tres pestañas**:
-    * **Home (`index.tsx`):** Pantalla de bienvenida.
-    * **Explore (`explore.tsx`):** Demostración interactiva de los hooks `useState` y `useEffect`.
-    * **Perfil (`perfil.tsx`):** Muestra el `email` del usuario logueado (acceso al Contexto).
+### 4. Arquitectura y Custom Hooks 🏗️
+Toda la lógica de negocio ha sido encapsulada en **Custom Hooks** para desacoplar las vistas de la lógica de procesamiento:
+* **`useTodos`:** Hook principal que gestiona la obtención, creación, edición y borrado de tareas, además de controlar los estados de carga (`loading`) y errores.
 
-### 3. Funcionalidad de Login
+---
 
-* **Validación de Contraseña:** La autenticación es exitosa solo con la contraseña `"1234"`. Cualquier otra contraseña dispara un mensaje de error.
-* **Redirección:** Tras un login exitoso, el usuario es redirigido a la raíz del grupo de pestañas (`/(tabs)`).
-* **Tipado:** Todo el proyecto usa **TypeScript** (`.tsx`) garantizando la seguridad de tipos.
+## 🤖 Uso de Herramientas de Inteligencia Artificial (Obligatorio)
+En cumplimiento con la rúbrica, se declara el uso de herramientas de **IA** como asistente para:
+1.  **Refactorización Arquitectónica:** Migración de lógica de contextos hacia Hooks personalizados.
+2.  **Gestión de Red:** Solución de errores de red en Android y manejo de interceptores para el token JWT.
+3.  **Configuración de Entorno:** Implementación de variables de entorno mediante archivos `.env`.
 
-***
+---
 
 ## 🚀 Instalación y Ejecución
 
 1.  **Clonar el repositorio:**
     ```bash
     git clone 
-    cd 
+    cd eva-libreria
     ```
 
-2.  **Instalar dependencias:**
+2.  **Configurar variables de entorno:**
+    Crea un archivo `.env` en la raíz con la URL obligatoria del backend:
+    ```env
+    EXPO_PUBLIC_API_URL=[https://todo-list.dobleb.cl](https://todo-list.dobleb.cl)
+    ```
+
+3.  **Instalar dependencias e iniciar:**
     ```bash
     npm install
+    npx expo start --clear
     ```
 
-3.  **Iniciar la aplicación:**
-    ```bash
-    npx expo start
-    ```
-    Escanea el código QR desde la aplicación Expo Go para ejecutar el proyecto.
+---
 
-***
+## 👥 Integrantes y Roles
+* **Eduardo Hormazabal A.:** Lógica de Hooks, Integración de API y CRUD.
+* **Jesus Mujica M.:** Interfaz de Usuario (UI), Navegación y Perfil.
+* **Maria Puen C.:** Gestión de Imágenes (R2), Cámara y Localización.
 
 ## 🔗 Enlaces de Entrega
-GITHUB: https://github.com/Roottok/eva1desarrolloaplicaciones
-VIDEO: https://www.loom.com/share/33d69f8eda31417ebc01831776187ab3 
+
+| Detalle | Enlace |
+| :--- | :--- |
+| **Repositorio GitHub** | https://github.com/Roottok/examenexpo |
+| **Video Demostrativo** | [Insertar Enlace Aquí] |
+
+---
