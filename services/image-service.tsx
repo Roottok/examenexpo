@@ -7,7 +7,7 @@ export const imageService = {
       
       const token = await AsyncStorage.getItem('userToken');
       if (!token) {
-        console.error("No se pudo subir imagen");
+        console.error("Error no se pudo subir imagen");
         return null;
       }
 
